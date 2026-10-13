@@ -1,0 +1,17 @@
+# Temporales del editor 
+*~
+*.swp
+*.tmp
+*.bak
+
+# Salidas generadas por los scripts
+salida/
+organized/
+respaldos/
+# No excluir *.log: los .log de entrada de los capstones SI se versionan
+
+# Archivos comprimidos generados
+respaldo-*.tar.gz
+
+# Credenciales 
+.env
