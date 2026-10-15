@@ -1,0 +1,87 @@
+=== /etc ===
+/etc guarda archivos de configuracion del sistema en texto plano.
+total 1176
+-rw-r--r--  1 root   root    3981 may  6  2025 adduser.conf
+-rw-r--r--  1 root   root      16 oct  7  2025 adjtime
+drwxr-xr-x  3 root   root    4096 oct  7  2025 alsa
+drwxr-xr-x  2 root   root    4096 oct  7  2025 alternatives
+-rw-r--r--  1 root   root     460 jun  2  2025 anacrontab
+-rw-r--r--  1 root   root     433 ago 25  2024 apg.conf
+drwxr-xr-x  2 root   root    4096 oct  7  2025 apparmor
+drwxr-xr-x  8 root   root    4096 oct  7  2025 apparmor.d
+drwxr-xr-x  8 root   root    4096 sep 21 01:02 apt
+drwxr-xr-x  3 root   root    4096 oct  7  2025 avahi
+-rw-r--r--  1 root   root    1997 jul 30  2025 bash.bashrc
+-rw-r--r--  1 root   root      45 ene 12  2025 bash_completion
+drwxr-xr-x  2 root   root    4096 oct  3 17:49 bash_completion.d
+-rw-r--r--  1 root   root     367 jul 26  2025 bindresvport.blacklist
+drwxr-xr-x  2 root   root    4096 ago 10  2025 binfmt.d
+drwxr-xr-x  2 root   root    4096 oct  7  2025 bluetooth
+drwxr-xr-x  3 root   root    4096 oct  7  2025 ca-certificates
+-rw-r--r--  1 root   root    6422 oct  7  2025 ca-certificates.conf
+-rw-r--r--  1 root   root     119 jun 16  2025 catdocrc
+
+ 
+=== /var ===
+/var guarda datos que cambia: registros, colas y caches.
+total 36K
+drwxr-xr-x  2 root root 4,0K oct 13 14:17 backups
+drwxr-xr-x 22 root root 4,0K sep 23 11:09 cache
+drwxr-xr-x 62 root root 4,0K oct  3 17:49 lib
+drwxr-xr-x  2 root root 4,0K ago 24  2025 local
+lrwxrwxrwx  1 root root    9 oct  7  2025 lock -> /run/lock
+drwxr-xr-x 12 root root 4,0K oct 15 16:23 log
+drwxrwsr-x  2 root mail 4,0K oct  7  2025 mail
+drwxr-xr-x  2 root root 4,0K oct  7  2025 opt
+lrwxrwxrwx  1 root root    4 oct  7  2025 run -> /run
+drwxr-xr-x  7 root root 4,0K oct  7  2025 spool
+drwxrwxrwt 15 root root 4,0K oct 15 17:16 tmp
+
+ 
+=== /home ===
+/home contiene un subdirectorio por usuario con sus archivos personales.
+total 4
+drwx------ 21 rodrigo rodrigo 4096 oct 15 16:23 rodrigo
+
+ 
+=== /bin ===
+/bin contirene programas escenciales disponibles para todo usuario.
+lrwxrwxrwx 1 root root 7 ago 24  2025 /bin -> usr/bin
+
+ 
+=== /tmp ===
+/tmp contiene archivos temporales que se vacian al reiniciar.
+total 0
+drwxrwxrwx 2 rodrigo rodrigo 60 oct 15 16:23 mintUpdate
+drwx------ 2 rodrigo rodrigo 60 oct 15 16:23 ssh-fTsmC3iU29js
+drwx------ 3 root    root    60 oct 15 16:23 systemd-private-453cfd8840bb4b738c62ee13cfc56d6c-bluetooth.service-jBVl3z
+drwx------ 3 root    root    60 oct 15 16:23 systemd-private-453cfd8840bb4b738c62ee13cfc56d6c-colord.service-mI8Fbn
+drwx------ 3 root    root    60 oct 15 17:16 systemd-private-453cfd8840bb4b738c62ee13cfc56d6c-fwupd.service-paRqUu
+drwx------ 3 root    root    60 oct 15 16:23 systemd-private-453cfd8840bb4b738c62ee13cfc56d6c-irqbalance.service-B6K747
+drwx------ 3 root    root    60 oct 15 16:23 systemd-private-453cfd8840bb4b738c62ee13cfc56d6c-lm-sensors.service-1ALUaR
+drwx------ 3 root    root    60 oct 15 16:23 systemd-private-453cfd8840bb4b738c62ee13cfc56d6c-ModemManager.service-Z41nBf
+drwx------ 3 root    root    60 oct 15 16:23 systemd-private-453cfd8840bb4b738c62ee13cfc56d6c-polkit.service-rh3xte
+drwx------ 3 root    root    60 oct 15 16:23 systemd-private-453cfd8840bb4b738c62ee13cfc56d6c-power-profiles-daemon.service-qsNjcu
+drwx------ 3 root    root    60 oct 15 16:23 systemd-private-453cfd8840bb4b738c62ee13cfc56d6c-rsyslog.service-Uzr1Gx
+drwx------ 3 root    root    60 oct 15 16:23 systemd-private-453cfd8840bb4b738c62ee13cfc56d6c-switcheroo-control.service-ofs2xW
+drwx------ 3 root    root    60 oct 15 16:23 systemd-private-453cfd8840bb4b738c62ee13cfc56d6c-systemd-logind.service-4eLIaF
+drwx------ 3 root    root    60 oct 15 16:23 systemd-private-453cfd8840bb4b738c62ee13cfc56d6c-upower.service-jlBOdn
+
+ 
+=== /proc ===
+/proc es un sistema virtual: el kernel genera su contenido al leerlo.
+total 36
+drwxr-xr-x  2 root root 4096 oct 13 14:17 backups
+drwxr-xr-x 22 root root 4096 sep 23 11:09 cache
+drwxr-xr-x 62 root root 4096 oct  3 17:49 lib
+drwxr-xr-x  2 root root 4096 ago 24  2025 local
+lrwxrwxrwx  1 root root    9 oct  7  2025 lock -> /run/lock
+drwxr-xr-x 12 root root 4096 oct 15 16:23 log
+drwxrwsr-x  2 root mail 4096 oct  7  2025 mail
+drwxr-xr-x  2 root root 4096 oct  7  2025 opt
+lrwxrwxrwx  1 root root    4 oct  7  2025 run -> /run
+drwxr-xr-x  7 root root 4096 oct  7  2025 spool
+drwxrwxrwt 15 root root 4096 oct 15 17:16 tmp
+
+ 
+Exploracion complementaria.
