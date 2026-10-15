@@ -25,3 +25,21 @@ ls -l /home
 echo "$SEP"
 echo " "
 
+echo "=== /bin ==="
+echo "/bin contirene programas escenciales disponibles para todo usuario."
+ls -l /bin | head -n 20
+echo "$SEP"
+echo " "
+
+echo "=== /tmp ==="
+echo "/tmp contiene archivos temporales que se vacian al reiniciar."
+ls -lh /tmp | head -n 20
+echo "$SEP"
+echo " "
+
+echo "=== /proc ==="
+echo "/proc es un sistema virtual: el kernel genera su contenido al leerlo."
+ls -l /var | head -n 20
+echo "$SEP"
+echo " "
+echo "Exploracion complementaria."
