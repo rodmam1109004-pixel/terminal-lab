@@ -15,3 +15,9 @@ DEST="$SCRIPT_DIR/respaldos"
 mkdir -p "$DEST"
 NOMBRE="respaldo-$(date +%F).tar.gz"
 RUTA="$DEST/$NOMBRE"
+
+# Busca los archivos recientes y se los entrega a tar por la entrada estandar
+cd "$SCRIPT_DIR"
+find . -type f -mtime -${DIAS} \
+    ! -name "*.tmp" ! -name "*~" ! -path "./respaldos/*" -print0 \
+  | tar --null -czf "$RUTA" --files-from=-
