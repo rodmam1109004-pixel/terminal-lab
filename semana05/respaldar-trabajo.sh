@@ -21,3 +21,11 @@ cd "$SCRIPT_DIR"
 find . -type f -mtime -${DIAS} \
     ! -name "*.tmp" ! -name "*~" ! -path "./respaldos/*" -print0 \
   | tar --null -czf "$RUTA" --files-from=-
+
+# Informe
+CUENTA=$(tar -tzf "$RUTA" | wc -l)
+TAM=$(du -h "$RUTA" | cut -f1)
+echo "Dias considerados: $DIAS"
+echo "Archivos respaldados: $CUENTA"
+echo "Tamano del paquete: $TAM"
+echo "Paquete: $RUTA"
