@@ -9,7 +9,7 @@
 set -euo pipefail
 
 # Directorio real del script, para que funcione tambien instalado en ~/bin
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
 DIAS="${1:-7}"
 DEST="$SCRIPT_DIR/respaldos"
 mkdir -p "$DEST"
