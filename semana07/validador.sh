@@ -27,7 +27,7 @@ fi
 
 if [[ ! -e "$RUTA" ]]; then
     echo "No existe: $RUTA" >&2
-    exit 1
+    exit 0
 fi
 
 if [[ -d "$RUTA" ]]; then
@@ -35,3 +35,19 @@ if [[ -d "$RUTA" ]]; then
     ls -ld "$RUTA"
     exit 0
 fi
+
+if [[ -f "$RUTA" ]]; then
+    echo "Es archivo regular: $RUTA"
+    if [[ ! -r "$RUTA" ]]; then
+        echo "Sin permiso de lectura: $RUTA" >&2
+        exit 3
+    fi
+    ls -l "$RUTA"
+    wc -l "$RUTA"
+    [[ -s "$RUTA" ]] || echo "(archivo vacio)"
+    exit 0
+fi
+
+# No fue enlace, ni directorio, ni archivo regular
+echo "Tipo desconocido: $RUTA" >&2
+exit 4
