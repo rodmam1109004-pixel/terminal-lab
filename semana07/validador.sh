@@ -27,7 +27,7 @@ fi
 
 if [[ ! -e "$RUTA" ]]; then
     echo "No existe: $RUTA" >&2
-    exit 0
+    exit 1
 fi
 
 if [[ -d "$RUTA" ]]; then
