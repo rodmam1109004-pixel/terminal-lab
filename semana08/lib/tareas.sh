@@ -17,3 +17,22 @@ agregar_tarea() {
   echo "$id,$desc,pendiente,$(date +%F)" >> "$DATOS"
   echo "Tarea $id agregada."
 }
+
+completar_tarea() {
+  local id
+  read -rp "Id de la tarea a completar: " id
+  validar_id "$id" || return 1
+  awk -F, -v id="$id" 'BEGIN {OFS=","} $1==id {$3="completada"} 1' \
+    "$DATOS" > "$DATOS.tmp" && mv "$DATOS.tmp" "$DATOS"
+  echo "Tarea $id completada."
+}
+
+eliminar_tarea() {
+  local id
+  read -rp "Id de la tarea a eliminar: " id
+  validar_id "$id" || return 1
+  # El patron incluye la coma: asi el id 1 no borra tambien el 10
+  grep -v "^$id," "$DATOS" > "$DATOS.tmp" || true
+  mv "$DATOS.tmp" "$DATOS"
+  echo "Tarea $id eliminada."
+}
