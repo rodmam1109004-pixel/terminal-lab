@@ -1,0 +1,42 @@
+=== Monitor de procesos ===
+Usuario: rodrigo
+Fecha: mar 10 nov 2026 15:15:47 -04
+
+=== Procesos del usuario ordenados por %CPU ===
+    PID STAT %CPU %MEM COMMAND
+   2790 Sl   11.8 39.1 QtWebEngineProc
+   2696 Sl   10.9  7.3 zapzap
+   1616 Sl    2.0  2.7 cinnamon
+   2042 Sl    1.4  6.9 firefox-bin
+   2777 Sl    0.5  7.8 QtWebEngineProc
+   2370 Sl    0.5  3.2 Isolated Web Co
+   1868 Ssl   0.4  0.9 gnome-terminal-
+   2017 Sl    0.1  0.9 mintreport-tray
+   2144 Sl    0.1  1.9 Privileged Cont
+   1742 Sl    0.1  0.5 blueman-tray
+   2418 Sl    0.0  0.4 Web Content
+   2521 Sl    0.0  0.4 Web Content
+   2470 Sl    0.0  0.4 Web Content
+   1673 Sl    0.0  0.7 nemo-desktop
+   2209 Sl    0.0  0.5 WebExtensions
+   1959 Sl    0.0  1.1 mintUpdate
+   1676 Sl    0.0  0.5 blueman-applet
+   1413 Sl    0.0  0.5 csd-power
+   1151 Ss    0.0  0.1 dbus-daemon
+
+=== Procesos de mayor consumo ===
+   2790 QtWebEngineProc 11.8
+=== conteo por estado ===
+      1 R
+     95 S
+
+=== Proceso de prueba ===
+Proceso de prueba lanzado con PID=3755
+    PID STAT CMD
+   3755 S+   sleep 60
+[1]+  3755 Ejecutando              sleep 60 &
+
+=== Terminacion en dos etapas ===
+Termino correctamente con SIGTERM
+
+Monitoreo completado.
