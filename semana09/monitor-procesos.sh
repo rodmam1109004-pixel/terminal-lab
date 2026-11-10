@@ -13,3 +13,7 @@ echo "=== Monitor de procesos ==="
 echo "Usuario: $USER"
 echo "Fecha: $(date)"
 echo ""
+
+echo "=== Procesos del usuario ordenados por %CPU ==="
+ps -u "$USER" -o pid,stat,%cpu,%mem,comm --sort=-%cpu | head -n 20
+echo ""
