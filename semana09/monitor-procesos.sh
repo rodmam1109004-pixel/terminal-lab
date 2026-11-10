@@ -17,3 +17,8 @@ echo ""
 echo "=== Procesos del usuario ordenados por %CPU ==="
 ps -u "$USER" -o pid,stat,%cpu,%mem,comm --sort=-%cpu | head -n 20
 echo ""
+
+echo "=== conteo por estado ==="
+# La primera letra de STAT es el estado: R, S, D, T o Z
+ps -u "$USER" -o stat | tail -n +2 | cut -c1 | sort | uniq -c
+echo ""
