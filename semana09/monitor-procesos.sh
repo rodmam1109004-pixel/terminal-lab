@@ -30,3 +30,18 @@ echo "Proceso de prueba lanzado con PID=$PID"
 ps -p "$PID" -o pid,stat,cmd
 jobs -l
 echo ""
+
+echo "=== Terminacion en dos etapas ==="
+# Primero se pide por las buenas
+kill -TERM "$PID" || true
+sleep 1
+# kill -0 no envia ninguna senal: solo pregunta si el proceso sigue vivo
+if kill -0 "$PID" 2>/dev/null; then
+  kill -KILL "$PID"
+  echo "No respondio a SIGTERM: se envio SIGKILL"
+else
+  echo "Termino correctamente con SIGTERM"
+fi
+
+echo ""
+echo "Monitoreo completado."
