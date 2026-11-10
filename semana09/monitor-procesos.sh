@@ -18,6 +18,10 @@ echo "=== Procesos del usuario ordenados por %CPU ==="
 ps -u "$USER" -o pid,stat,%cpu,%mem,comm --sort=-%cpu | head -n 20
 echo ""
 
+echo "=== Procesos de mayor consumo ==="
+# head -n 2 deja cabecera + primera fila; tail -n 1 descarta la cabecera
+ps -u "$USER" -o pid,comm,%cpu --sort=-%cpu | head -n 2 | tail -n 1
+
 echo "=== conteo por estado ==="
 # La primera letra de STAT es el estado: R, S, D, T o Z
 ps -u "$USER" -o stat | tail -n +2 | cut -c1 | sort | uniq -c
