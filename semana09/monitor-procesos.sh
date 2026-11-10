@@ -22,3 +22,11 @@ echo "=== conteo por estado ==="
 # La primera letra de STAT es el estado: R, S, D, T o Z
 ps -u "$USER" -o stat | tail -n +2 | cut -c1 | sort | uniq -c
 echo ""
+
+echo "=== Proceso de prueba ==="
+sleep 60 &
+PID=$!
+echo "Proceso de prueba lanzado con PID=$PID"
+ps -p "$PID" -o pid,stat,cmd
+jobs -l
+echo ""
