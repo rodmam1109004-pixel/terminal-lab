@@ -37,3 +37,7 @@ function Show-Seccion {
 Show-Seccion -Path "/etc" -Desc "/etc guarda la configuracion del sistema en texto plano."
 Show-Seccion -Path "/var" -Desc "/var guarda datos que cambian: registros, colas y caches."
 Show-Seccion -Path "/home" -Desc "/home contiene un subdirectorio por usuario."
+Show-Seccion -Path "/bin" -Desc "/bin contiene los programas esenciales del sistema."
+Show-Seccion -Path "/tmp" -Desc "/tmp contiene archivos temporales que se borran al reiniciar."
+Show-Seccion -Path "/proc" -Desc "/proc es virtual: el kernel genera su contenido al leerlo."
+Write-Output "Exploracion completada."
