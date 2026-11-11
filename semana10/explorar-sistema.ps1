@@ -11,3 +11,29 @@ Uso: pwsh ./explorar-sistema.ps1
 
 Write-Output "Exploracion del sistema - PowerShell"
 Write-Output ""
+
+function Get-DirInfo {
+    param(
+        [string]$Path,
+        [int]$Max = 10
+    )
+    # Devuelve objetos, no texto: el formato se aplica despues
+    Get-ChildItem -LiteralPath $Path -ErrorAction SilentlyContinue |
+        Select-Object -First $Max Name, Length, LastWriteTime
+}
+
+function Show-Seccion {
+    param(
+        [string]$Path,
+        [string]$Desc
+    )
+    Write-Output "=== $Path ==="
+    Write-Output $Desc
+    Get-DirInfo -Path $Path | Format-Table -AutoSize | Out-String | Write-Output
+    Write-Output ("-" * 50)
+    Write-Output ""
+}
+
+Show-Seccion -Path "/etc" -Desc "/etc guarda la configuracion del sistema en texto plano."
+Show-Seccion -Path "/var" -Desc "/var guarda datos que cambian: registros, colas y caches."
+Show-Seccion -Path "/home" -Desc "/home contiene un subdirectorio por usuario."
