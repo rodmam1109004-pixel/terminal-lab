@@ -31,3 +31,17 @@ $registros = Get-Content $Log | ForEach-Object {
 
 Write-Output "Registros leidos: $($registros.Count)"
 Write-Output ""
+
+Write-Output "=== Top 5 IP con mas peticiones ==="
+$registros |
+    Group-Object IP |
+    Sort-Object Count -Descending |
+    Select-Object -First 5 Count, Name |
+    Format-Table -AutoSize | Out-String | Write-Output
+
+Write-Output "=== Conteo por codigo de estado ==="
+$registros |
+    Group-Object Estado |
+    Sort-Object Name |
+    Select-Object Name, Count |
+    Format-Table -AutoSize | Out-String | Write-Output
