@@ -1,0 +1,45 @@
+=== Analisis de acceso.log ===
+
+Registros leidos: 15
+
+=== Top 5 IP con mas peticiones ===
+
+Count Name
+----- ----
+    6 192.168.1.10
+    3 192.168.1.11
+    3 192.168.1.12
+    1 192.168.1.13
+    1 192.168.1.14
+
+
+=== Conteo por codigo de estado ===
+
+Name Count
+---- -----
+200     11
+301      1
+404      1
+500      2
+
+
+=== Peticiones con error 500 ===
+
+Hora IP           Recurso
+---- --           -------
+10   192.168.1.10 /api/login
+11   192.168.1.10 /panel
+
+
+=== Hora pico ===
+
+Name Count
+---- -----
+11       6
+
+
+=== Trafico total ===
+Bytes enviados: 16182
+Promedio por peticion: 1078.8
+
+Analisis completado.
