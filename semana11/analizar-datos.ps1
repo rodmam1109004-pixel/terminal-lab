@@ -45,3 +45,24 @@ $registros |
     Sort-Object Name |
     Select-Object Name, Count |
     Format-Table -AutoSize | Out-String | Write-Output
+
+Write-Output "=== Peticiones con error 500 ==="
+$registros |
+    Where-Object Estado -eq 500 |
+    Select-Object Hora, IP, Recurso |
+    Format-Table -AutoSize | Out-String | Write-Output
+
+Write-Output "=== Hora pico ==="
+$registros |
+    Group-Object Hora |
+    Sort-Object Count -Descending |
+    Select-Object -First 1 Name, Count |
+    Format-Table -AutoSize | Out-String | Write-Output
+
+Write-Output "=== Trafico total ==="
+$suma = ($registros | Measure-Object Bytes -Sum).Sum
+$promedio = [math]::Round(($registros | Measure-Object Bytes -Average).Average, 1)
+Write-Output "Bytes enviados: $suma"
+Write-Output "Promedio por peticion: $promedio"
+Write-Output ""
+Write-Output "Analisis completado."
