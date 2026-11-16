@@ -40,3 +40,22 @@ Get-SobreUmbral | Format-Table -AutoSize | Out-String | Write-Output
 
 Write-Output "=== 2. Proyeccion con columna calculada ==="
 Get-ConColumnaCalculada | Format-Table -AutoSize | Out-String | Write-Output
+
+function Get-ResumenPorCategoria {
+    $datos | Group-Object Categoria | Select-Object `
+        @{ Name = 'Categoria'; Expression = { $_.Name } },
+        Count,
+        @{ Name = 'Total';    Expression = { ($_.Group | Measure-Object Valor -Sum).Sum } },
+        @{ Name = 'Promedio'; Expression = { [math]::Round(($_.Group | Measure-Object Valor -Average).Average, 1) } }
+}
+
+function Get-DosCondiciones {
+    $datos | Where-Object { $_.Valor -gt 50 -and $_.Categoria -eq 'A' }
+}
+
+Write-Output "=== 3. Resumen por categoria ==="
+Get-ResumenPorCategoria | Sort-Object Categoria |
+    Format-Table -AutoSize | Out-String | Write-Output
+
+Write-Output "=== 4. Categoria A con Valor mayor que 50 ==="
+Get-DosCondiciones | Format-Table -AutoSize | Out-String | Write-Output
