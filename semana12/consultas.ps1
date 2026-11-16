@@ -35,12 +35,6 @@ function Get-ConColumnaCalculada {
     }
 }
 
-Write-Output "=== 1. Filas con Valor mayor que 100 ==="
-Get-SobreUmbral | Format-Table -AutoSize | Out-String | Write-Output
-
-Write-Output "=== 2. Proyeccion con columna calculada ==="
-Get-ConColumnaCalculada | Format-Table -AutoSize | Out-String | Write-Output
-
 function Get-ResumenPorCategoria {
     $datos | Group-Object Categoria | Select-Object `
         @{ Name = 'Categoria'; Expression = { $_.Name } },
@@ -53,9 +47,33 @@ function Get-DosCondiciones {
     $datos | Where-Object { $_.Valor -gt 50 -and $_.Categoria -eq 'A' }
 }
 
+function Get-CategoriasUnicas {
+    $datos | Select-Object -ExpandProperty Categoria -Unique | Sort-Object
+}
+
+function Get-Totales {
+    $datos | Measure-Object Valor -Sum -Average -Maximum -Minimum |
+        Select-Object Count, Sum, Average, Maximum, Minimum
+}
+
+Write-Output "=== 1. Filas con Valor mayor que 100 ==="
+Get-SobreUmbral | Format-Table -AutoSize | Out-String | Write-Output
+
+Write-Output "=== 2. Proyeccion con columna calculada ==="
+Get-ConColumnaCalculada | Format-Table -AutoSize | Out-String | Write-Output
+
 Write-Output "=== 3. Resumen por categoria ==="
 Get-ResumenPorCategoria | Sort-Object Categoria |
     Format-Table -AutoSize | Out-String | Write-Output
 
 Write-Output "=== 4. Categoria A con Valor mayor que 50 ==="
 Get-DosCondiciones | Format-Table -AutoSize | Out-String | Write-Output
+
+Write-Output "=== 5. Categorias distintas, ordenadas ==="
+# Sin Format-Table: sobre cadenas mostraria la columna Length, no el valor
+Get-CategoriasUnicas | Out-String | Write-Output
+
+Write-Output "=== 6. Totales del conjunto ==="
+Get-Totales | Format-Table -AutoSize | Out-String | Write-Output
+
+Write-Output "Consultas completadas."
