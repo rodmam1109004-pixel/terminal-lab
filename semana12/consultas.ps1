@@ -22,3 +22,21 @@ $datos = Import-Csv $Csv | ForEach-Object {
 Write-Output "=== Consultas sobre $Csv ==="
 Write-Output "Filas leídas: $($datos.Count)"
 Write-Output ""
+
+function Get-SobreUmbral {
+    param([int]$Umbral = 100)
+    $datos | Where-Object Valor -gt $Umbral | Select-Object Nombre, Categoria, Valor
+}
+
+function Get-ConColumnaCalculada {
+    $datos | Select-Object Nombre, Valor, @{
+        Name       = 'Doble'
+        Expression = { $_.Valor * 2 }
+    }
+}
+
+Write-Output "=== 1. Filas con Valor mayor que 100 ==="
+Get-SobreUmbral | Format-Table -AutoSize | Out-String | Write-Output
+
+Write-Output "=== 2. Proyeccion con columna calculada ==="
+Get-ConColumnaCalculada | Format-Table -AutoSize | Out-String | Write-Output
