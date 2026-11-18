@@ -21,7 +21,8 @@ $Dest   = Join-Path $Base "organized"
 
 # Se parte de cero en cada ejecucion: asi el resultado siempre es el mismo
 if (Test-Path $Mezcla) { Remove-Item $Mezcla -Recurse -Force }
-New-Item -ItemType Directory -Path $Mezcla | Out-Null
+if (Test-Path $Dest) { Remove-Item $Dest -Recurse -Force }
+New-Item -ItemType Directory -Path $Mezcla -Force | Out-Null
 
 1..10 | ForEach-Object {
     New-Item -ItemType File -Path "$Mezcla/script$_.sh"  -Value "# script $_" -Force | Out-Null
@@ -31,4 +32,25 @@ New-Item -ItemType Directory -Path $Mezcla | Out-Null
     New-Item -ItemType File -Path "$Mezcla/doc$_.md"     -Value "# doc $_"    -Force | Out-Null
 }
 
-Write-Output "Archivos generados: $((Get-ChildItem $Mezcla).Count)"
+Write-Output "Archivos generados: $@((Get-ChildItem $Mezcla)).Count"
+
+# Carpetas de destino, una por categoria
+New-Item -ItemType Directory -Force -Path `
+    "$Dest/scripts", "$Dest/documentos", "$Dest/imagenes", `
+    "$Dest/registros", "$Dest/otros" | Out-Null
+
+Get-ChildItem $Mezcla -File | Group-Object Extension | ForEach-Object {
+    $ext = $_.Name
+    $destino = switch ($ext) {
+        ".sh"  { "$Dest/scripts" }
+        ".txt" { "$Dest/documentos" }
+        ".md"  { "$Dest/documentos" }
+        ".jpg" { "$Dest/imagenes" }
+        ".png" { "$Dest/imagenes" }
+        ".log" { "$Dest/registros" }
+        default { "$Dest/otros" }
+    }
+    if ($PSCmdlet.ShouldProcess("$($_.Count) archivo(s) $ext", "Mover a $destino")) {
+        $_.Group | Move-Item -Destination $destino -Force
+    }
+}
