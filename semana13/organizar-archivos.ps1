@@ -54,3 +54,14 @@ Get-ChildItem $Mezcla -File | Group-Object Extension | ForEach-Object {
         $_.Group | Move-Item -Destination $destino -Force
     }
 }
+# Resumen por categoria
+if ($PSCmdlet.ShouldProcess("resumen.csv", "Exportar resumen")) {
+    $resumen = Get-ChildItem $Dest -Directory | Select-Object `
+        @{ Name = 'Categoria'; Expression = { $_.Name } },
+        @{ Name = 'Cantidad'; Expression = { (Get-ChildItem $_.FullName -File | Measure-Object).Count } },
+        @{ Name = 'Bytes'; Expression = { (Get-ChildItem $_.FullName -File | Measure-Object Length -Sum).Sum } }
+
+    $resumen | Export-Csv -Path (Join-Path $Base "resumen.csv") -NoTypeInformation
+    $resumen | Format-Table -AutoSize | Out-String | Write-Output
+    Write-Output "Resumen escrito en resumen.csv"
+}
