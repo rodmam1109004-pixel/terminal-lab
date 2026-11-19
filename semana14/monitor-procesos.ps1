@@ -39,3 +39,11 @@ $procs | Group-Object ProcessName |
     Sort-Object Count -Descending |
     Select-Object -First $Top Count, Name |
     Format-Table -AutoSize | Out-String | Write-Output
+
+Write-Output "=== Consulta en segundo plano ==="
+$job = Start-Job -ScriptBlock { (Get-Process).Count }
+Wait-Job $job | Out-Null
+$conteo = Receive-Job $job
+Remove-Job $job
+Write-Output "Procesos contados en el job: $conteo"
+Write-Output ""
