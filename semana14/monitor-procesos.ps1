@@ -26,3 +26,16 @@ $procs = Get-Process | Select-Object Id, ProcessName, CPU, @{
 Write-Output "=== $Top procesos con mas memoria ==="
 $procs | Sort-Object MemMB -Descending | Select-Object -First $Top |
     Format-Table -AutoSize | Out-String | Write-Output
+
+Write-Output "=== Proceso con mas memoria ==="
+# Se ordena por MemMB y no por CPU: en Linux, CPU puede venir vacio en
+# procesos recien creados, y ordenar por un valor nulo no tiene sentido
+
+$procs | Sort-Object MemMB -Descending | Select-Object -First 1 |
+    Format-Table -AutoSize | Out-String | Write-Output
+
+Write-Output "=== Programas con mas instancias ==="
+$procs | Group-Object ProcessName |
+    Sort-Object Count -Descending |
+    Select-Object -First $Top Count, Name |
+    Format-Table -AutoSize | Out-String | Write-Output
