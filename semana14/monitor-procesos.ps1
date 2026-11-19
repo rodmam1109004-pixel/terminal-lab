@@ -47,3 +47,11 @@ $conteo = Receive-Job $job
 Remove-Job $job
 Write-Output "Procesos contados en el job: $conteo"
 Write-Output ""
+
+Write-Output "=== Exportacion ==="
+# Se exportan los objetos, nunca la tabla ya formateada
+$procs | Sort-Object MemMB -Descending |
+    Select-Object Id, ProcessName, CPU, MemMB |
+    Export-Csv -Path (Join-Path $PSScriptRoot $Salida) -NoTypeInformation
+
+Write-Output "Exportado a $Salida ($($procs.Count) filas)"
